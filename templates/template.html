@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flugwetter-App</title>
+    </head>
+
+    <body>
+        <h1>Flugwetter-App</h1>
+        
+        <form method="POST">
+            <label for="start_city">Start:</label>
+            <select id="start_city" name="start_city">
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="end_city">Ziel:</label>
+            <select id="end_city" name="end_city">
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="flight_date">Flugdatum (YYYY-MM-DD):</label>
+            <input type="date" id="flight_date" name="flight_date" required>
+            <br>
+            <button type="submit">Flugbedingungen prüfen</button>
+        </form>
+
+        <br>
+
+        {% if flight_status %}
+            <h2>Flugstatus:</h2>
+            <p>Start: {{ start_city }}</p>
+            <p>Ziel: {{ end_city }}</p>
+            <p>Flugdatum: {{ flight_date }}</p>
+            <p> <strong>{{ flight_status }}</strong> </p>
+        {% endif %}
+    </body>
+</html>
